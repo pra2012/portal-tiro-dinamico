@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tiro Esportivo Brasileiro — Alta performance, modalidades, técnica, normas e processos.">
+<title>Tiro Esportivo Brasileiro — Alta Performance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Importando Chart.js para o Dashboard -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- SCRIPT PRINCIPAL DO GOOGLE ADSENSE -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4219712052442304" crossorigin="anonymous"></script>
+
+<style>
+/* --- VARIÁVEIS DA IDENTIDADE ESPORTIVA (NAVY & AMBER) --- */
+:root {
+  --bg-main: #0b1120;       
+  --bg-card: #151e32;       
+  --bg-hover: #1e293b;      
+  --accent: #f59e0b;        
+  --accent-hover: #d97706;  
+  --accent-glow: rgba(245, 158, 11, 0.25);
+  --text-main: #f8fafc;     
+  --text-muted: #94a3b8;    
+  --border: #334155;        
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg-main);color:var(--text-main);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;padding-top:85px;overflow-x:hidden;}
+a{color:inherit;text-decoration:none}
+
+h1,h2,h3,h4{font-family:'Oswald',sans-serif; letter-spacing:1px; text-transform:uppercase; font-style: italic; font-weight: 700;}
+
+/* --- CABEÇALHO --- */
+header {
+  background: rgba(11, 17, 32, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--accent); position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
+  display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 4%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.logo-wrap { display: flex; align-items: center; gap: 1rem; cursor: pointer; transition: transform 0.3s ease; }
+.logo-wrap:hover { transform: scale(1.02); }
+.logo-wrap:hover .logo-svg { filter: drop-shadow(0 0 10px var(--accent-glow)); }
+.logo-svg { width: 50px; height: 50px; transition: all 0.3s ease; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-main { font-family: 'Oswald', sans-serif; font-style: italic; font-weight: 700; font-size: 1.8rem; letter-spacing: 0.5px; color: var(--text-main); }
+.logo-main span { color: var(--accent); }
+.logo-sub { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 3px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+
+/* --- NAVEGAÇÃO --- */
+nav ul { display: flex; list-style: none; gap: 1.2rem; }
+nav a { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); padding: 0.5rem 0; transition: all 0.3s ease; border-bottom: 3px solid transparent;}
+nav a:hover, nav a.active { color: var(--accent); border-bottom: 3px solid var(--accent); font-style: italic;}
+.hamburger { display: none; background: none; border: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; }
+
+/* --- BOTÕES --- */
+.btn-primary { background: var(--accent); color: #0b1120; padding: 12px 28px; border: none; font-family: 'Oswald', sans-serif; font-weight: 700; font-style: italic; font-size: 16px; cursor: pointer; border-radius: 2px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; justify-content: center; text-transform: uppercase; letter-spacing: 1px;}
+.btn-primary:hover { background: var(--text-main); color: var(--bg-main); box-shadow: 0 4px 15px var(--accent-glow); transform: translateY(-2px) scale(1.02); }
+.btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text-main); padding: 10px 26px; font-family: 'Oswald', sans-serif; font-weight: 700; font-style: italic; font-size: 16px; cursor: pointer; border-radius: 2px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 1px;}
+.btn-outline:hover { border-color: var(--text-main); background: var(--bg-hover); }
+
+/* --- HERO --- */
+.hero { padding: 5rem 4%; background: linear-gradient(135deg, var(--bg-main) 0%, #151e32 100%); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden;}
+.hero::after { content: ''; position: absolute; top: 0; right: 0; width: 30%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(245, 158, 11, 0.03) 10px, rgba(245, 158, 11, 0.03) 20px); z-index: 0;}
+.hero h1 { font-size: 3.5rem; margin-bottom: 1rem; color: #fff; z-index: 1;}
+.hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 700px; margin-bottom: 2rem; z-index: 1;}
+
+/* --- DASHBOARD GERAL --- */
+.dashboard-container { padding: 3rem 4%; max-width: 1400px; margin: 0 auto; width: 100%;}
+.dash-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 10px;}
+.dash-header h2 { font-size: 1.8rem; margin: 0; color: #fff; display: flex; align-items: center; gap: 10px;}
+.filter-group { display: flex; align-items: center; gap: 10px; background: var(--bg-card); padding: 6px 15px; border-radius: 4px; border: 1px solid var(--border);}
+.filter-group label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;}
+.filter-select { background: transparent; border: none; color: var(--accent); font-weight: 700; font-size: 14px; outline: none; cursor: pointer; font-family: 'Inter', sans-serif;}
+.dash-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+.dash-card { background: var(--bg-card); border: 1px solid var(--border); border-top: 4px solid var(--border); border-radius: 4px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: border-color 0.3s;}
+.dash-card:hover { border-top-color: var(--accent); }
+.chart-container { position: relative; height: 350px; width: 100%; }
+
+.summary-cards { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.summary-box { background: var(--bg-hover); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 4px; display: flex; flex-direction: column; gap: 5px;}
+.summary-box .label { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); font-weight: 700;}
+.summary-box .value { font-size: 2.8rem; font-family: 'Oswald', sans-serif; font-style: italic; color: #fff; line-height: 1;}
+
+/* --- SUB-ABAS --- */
+.sub-tabs-tactical { display: flex; gap: 15px; margin-bottom: 2rem; border-bottom: 2px solid var(--border); padding-bottom: 0; flex-wrap: wrap;}
+.sub-tab-btn { background: transparent; color: var(--text-muted); border: none; font-family: 'Oswald', sans-serif; font-size: 1.2rem; text-transform: uppercase; font-style: italic; cursor: pointer; padding: 10px 20px; transition: 0.3s; position: relative;}
+.sub-tab-btn:hover { color: var(--text-main); }
+.sub-tab-btn.active { color: var(--accent); }
+.sub-tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 3px; background: var(--accent); }
+
+/* --- ABAS COMPONENTES --- */
+.tab-content { display: none; padding: 3rem 4%; max-width: 1400px; margin: 0 auto; min-height: 50vh;}
+.tab-content.active { display: block; animation: slideIn 0.4s ease forwards; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
+
+/* --- FORMULÁRIOS E TABELAS --- */
+.form-control { width: 100%; background: var(--bg-main); border: 1px solid var(--border); color: var(--text-main); padding: 14px; border-radius: 2px; margin-bottom: 1.5rem; font-family: 'Inter', sans-serif; font-size: 14px; transition: 0.3s;}
+.form-control:focus { outline: none; border-color: var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
+.form-label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+.table-dark { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table-dark th { background: var(--bg-hover); color: var(--text-muted); text-align: left; padding: 15px; border-bottom: 2px solid var(--border); font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;}
+.table-dark td { padding: 15px; border-bottom: 1px solid var(--border); color: var(--text-main); font-weight: 500;}
+.status-badge { padding: 4px 10px; border-radius: 2px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;}
+.status-warning { background: rgba(245, 158, 11, 0.15); color: var(--accent); border: 1px solid rgba(245, 158, 11, 0.4);}
+.status-safe { background: rgba(148, 163, 184, 0.1); color: var(--text-muted); border: 1px solid var(--border);}
+
+/* --- CARDS --- */
+.highlight-box { background: var(--bg-card); border-left: 5px solid var(--accent); padding: 2rem; border-radius: 2px; margin-bottom: 2.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);}
+.highlight-box h3 { color: #fff; font-size: 1.6rem; margin-bottom: 0.5rem; }
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+.article-card { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: 2px; padding: 2rem; cursor: pointer; transition: all 0.3s ease; display:flex; flex-direction:column;}
+.article-card:hover { border-left-color: var(--accent); transform: translateX(5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+.article-tag { align-self: flex-start; color: #0b1120; background: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem; display: inline-block; padding: 4px 10px; border-radius: 2px;}
+.article-title { font-size: 1.5rem; margin-bottom: 1rem; line-height: 1.2; color: #fff;}
+
+/* --- SOCIAL FEED & CONFEDERATIONS --- */
+.social-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+.social-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column;}
+.social-header { display: flex; align-items: center; gap: 12px; padding: 1.2rem; border-bottom: 1px solid var(--border); background: var(--bg-hover); }
+.social-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #0b1120; font-size: 18px; font-family: 'Oswald', sans-serif;}
+.social-user { font-size: 15px; font-weight: 700; color: #fff; line-height: 1.2;}
+.social-platform { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-top: 2px;}
+.social-img { width: 100%; height: 200px; background: var(--bg-main); display: flex; align-items: center; justify-content: center; }
+.social-body { padding: 1.2rem; font-size: 14px; color: var(--text-muted); line-height: 1.6; flex-grow: 1; }
+.feed-link-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; font-size: 13px; font-weight: 700; font-family: 'Inter', sans-serif; color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 2px; transition: all 0.2s; width: max-content;}
+.feed-link-btn:hover { color: var(--accent); }
+
+/* --- ÍCONES DE REDES SOCIAIS --- */
+.social-icons-row { display: flex; gap: 15px; align-items: center; }
+.social-icons-row a { color: var(--text-muted); font-size: 1.4rem; transition: 0.3s; }
+.social-icons-row a:hover { color: var(--accent); transform: scale(1.15); }
+
+/* --- BLOCO DE ANÚNCIO (ADSENSE) --- */
+.ad-container { max-width: 1400px; margin: 2rem auto; text-align: center; background: var(--bg-hover); border: 1px dashed var(--border); padding: 10px; border-radius: 4px;}
+.ad-container::before { content: 'Publicidade'; display: block; font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;}
+
+/* --- GAVETA LATERAL (MODAL) --- */
+.article-full { position: fixed; top: 0; right: -100%; width: 100%; max-width: 600px; height: 100vh; background: var(--bg-card); border-left: 1px solid var(--border); z-index: 20000; overflow-y: auto; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); box-shadow: -10px 0 30px rgba(0,0,0,0.8); }
+.article-full.open { right: 0; }
+.drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); z-index: 19999; display: none; opacity: 0; transition: opacity 0.4s; }
+.drawer-overlay.show { display: block; opacity: 1; }
+.article-header-sticky { position: sticky; top: 0; background: rgba(21, 30, 50, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 2rem; border-bottom: 2px solid var(--accent); display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+.article-header-sticky h3 { margin: 0; font-size: 1.5rem; color: #fff; }
+.close-btn { background: transparent; color: var(--text-muted); border: none; font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
+.close-btn:hover { color: var(--accent); }
+.article-content-wrapper { padding: 2.5rem 2rem; }
+.article-content-wrapper p { margin-bottom: 1.5rem; font-size: 15px; color: var(--text-muted); }
+.article-content-wrapper h4 { color: #fff; margin: 2rem 0 1rem 0; font-size: 1.3rem; }
+.article-content-wrapper ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+
+/* --- RESPONSIVO --- */
+@media(max-width: 768px) {
+  header { padding: 1rem 4%; }
+  .logo-main { font-size: 1.4rem; }
+  .logo-svg { width: 40px; height: 40px; }
+  nav { display: none; }
+  .hamburger { display: block; }
+  .hero h1 { font-size: 2.5rem; }
+  .dash-grid { grid-template-columns: 1fr; }
+  .summary-cards { grid-template-columns: 1fr 1fr; }
+  .table-dark { display: block; overflow-x: auto; white-space: nowrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrap" onclick="goHome()">
+    <!-- LOGO ESPORTIVO -->
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="15,10 85,10 95,50 50,95 5,50" fill="rgba(245, 158, 11, 0.1)" stroke="#334155" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="50" cy="45" r="20" fill="none" stroke="#f8fafc" stroke-width="3"/>
+      <circle cx="50" cy="45" r="10" fill="none" stroke="#f8fafc" stroke-width="3"/>
+      <circle cx="50" cy="45" r="4" fill="#f59e0b"/>
+      <polyline points="20,60 50,30 80,60" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="logo-text">
+      <div class="logo-main">Tiro<span>Esportivo</span></div>
+      <div class="logo-sub">Alta Performance</div>
+    </div>
+  </div>
+  
+  <nav id="navMenu">
+    <ul>
+      <li><a href="#" onclick="goHome(); return false;" class="active">Home</a></li>
+      <li><a href="#" onclick="showTab('modalidades'); return false;">Modalidades</a></li>
+      <li><a href="#" onclick="showTab('sinarmcac'); return false;">SIGMA / SINARM</a></li>
+      <li><a href="#" onclick="showTab('noticias'); return false;">Radar (Feed)</a></li>
+      <li><a href="#" onclick="showTab('treinos'); return false;">Técnica</a></li>
+    </ul>
+  </nav>
+  <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+</header>
+
+<div class="drawer-overlay" id="overlay" onclick="closeAllArticles()"></div>
+
+<!-- ============================================== -->
+<!-- HOME PAGE (DASHBOARD DESTACADO)                -->
+<!-- ============================================== -->
+<div id="home-page">
+  <section class="hero">
+    <h1>Portal do Atirador Brasileiro</h1>
+    <p>DILIGENTIA, VIS, CELERITAS. Acompanhe processos em tempo real, conheça as modalidades e atualize-se com as normativas mais recentes do esporte.</p>
+    <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;">
+      <button class="btn-primary" onclick="showTab('modalidades')"><i class="fas fa-trophy"></i> Ver Modalidades</button>
+      <button class="btn-outline" onclick="showTab('sinarmcac')"><i class="fas fa-plus"></i> Novo Processo</button>
+    </div>
+  </section>
+
+  <!-- BLOCO DE ANÚNCIO 1 (Abaixo do Hero) -->
+  <div class="ad-container" style="margin-top: 1rem; width: 92%;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4219712052442304"
+         data-ad-slot="SEU_SLOT_DE_ANUNCIO"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <div class="dashboard-container">
+    <div class="dash-header">
+      <h2><i class="fas fa-chart-line" style="color:var(--accent);"></i> Performance Administrativa</h2>
+      <div class="filter-group">
+        <label for="filtroGrafico-home">Análise por:</label>
+        <select id="filtroGrafico-home" class="filter-select">
+            <option value="delegacia" selected>Delegacia (DPF)</option>
+            <option value="estado">Estado (UF)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="dash-card">
+        <div class="chart-container">
+          <canvas id="graficoTempo-home"></canvas>
+        </div>
+      </div>
+      <div class="summary-cards">
+        <div class="summary-box">
+          <span class="label">Total no Acervo</span>
+          <span class="value" id="resumoTotal-home">0</span>
+        </div>
+        <div class="summary-box">
+          <span class="label">Média de Espera (Timer)</span>
+          <span class="value" id="resumoMedia-home" style="color: var(--accent);">0 Dias</span>
+        </div>
+        <div class="summary-box" style="border-left-color: var(--border);">
+          <span class="label">Base Legal Aplicada</span>
+          <span class="value" style="font-size: 1.8rem; margin-top:10px;">Lei 9.784/99</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="dash-card" style="margin-top: 2rem;">
+      <h3 style="margin-bottom: 1.5rem; color: #fff;">Pistas / Processos Ativos</h3>
+      <div style="overflow-x:auto;">
+        <table class="table-dark" id="tabelaProcessos-home">
+            <thead>
+                <tr>
+                    <th>Nº Registro</th>
+                    <th>Tipo de Stage</th>
+                    <th>Localidade</th>
+                    <th>Data Início (GRU)</th>
+                    <th>Tempo Decorrido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Preenchido dinamicamente via JS -->
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================== -->
+<!-- ABA: MODALIDADES DO TIRO ESPORTIVO             -->
+<!-- ============================================== -->
+<div class="tab-content" id="tab-modalidades">
+  <div class="dash-header" style="margin-bottom: 1rem;">
+    <h2><i class="fas fa-medal" style="color:var(--accent);"></i> Modalidades Esportivas</h2>
+  </div>
+  <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Conheça as principais disciplinas praticadas no Brasil, suas regras fundamentais e as confederações oficiais.</p>
+
+  <div class="articles-grid">
+    <div class="article-card" onclick="openArticle('mod-ipsc')">
+      <span class="article-tag">Tiro Prático</span>
+      <h3 class="article-title">IPSC (Handgun & Rifle)</h3>
+      <p style="color: var(--text-muted); font-size: 14px; flex-grow: 1;">A modalidade mais dinâmica do mundo. Baseada no lema DVC. O atirador deve resolver a pista no menor tempo possível atingindo a maior pontuação.</p>
+      <div class="feed-link-btn" style="margin-top: 1rem;">Conhecer as Regras <i class="fas fa-arrow-right"></i></div>
+    </div>
+
+    <div class="article-card" onclick="openArticle('mod-defensivo')">
+      <span class="article-tag">Simulação Real</span>
+      <h3 class="article-title">Tiro Defensivo (IDPA / LNTD)</h3>
+      <p style="color: var(--text-muted); font-size: 14px; flex-grow: 1;">Simulação de cenários de defesa pessoal. Exige o uso de porte velado, barricadas de cobertura e priorização tática de alvos (fatiamento).</p>
+      <div class="feed-link-btn" style="margin-top: 1rem;">Ver Divisões <i class="fas fa-arrow-right"></i></div>
+    </div>
+
+    <div class="article-card" onclick="openArticle('mod-precisao')">
+      <span class="article-tag">Olímpico / ISSF</span>
+      <h3 class="article-title">Tiro de Precisão (Papel)</h3>
+      <p style="color: var(--text-muted); font-size: 14px; flex-grow: 1;">Envolve disciplinas clássicas e olímpicas (Pistola de Ar, Carabina). Foco total na respiração, controle de gatilho e pontuação exata no alvo estático.</p>
+      <div class="feed-link-btn" style="margin-top: 1rem;">Detalhes da Disciplina <i class="fas fa-arrow-right"></i></div>
+    </div>
+
+    <div class="article-card" onclick="openArticle('mod-prato')">
+      <span class="article-tag">Shotgun / Fossa</span>
+      <h3 class="article-title">Tiro ao Prato (Trap / Skeet)</h3>
+      <p style="color: var(--text-muted); font-size: 14px; flex-grow: 1;">Modalidade olímpica de espingardas (calibre 12). O objetivo é interceptar alvos de argila lançados em alta velocidade e em diferentes trajetórias.</p>
+      <div class="feed-link-btn" style="margin-top: 1rem;">Como Funciona <i class="fas fa-arrow-right"></i></div>
+    </div>
+  </div>
+
+  <div class="dash-header" style="margin-top: 4rem; margin-bottom: 1.5rem;">
+    <h2><i class="fas fa-shield-alt" style="color:var(--accent);"></i> Confederações e Ligas Nacionais</h2>
+  </div>
+  
+  <div class="social-grid">
+    <!-- CBTP -->
+    <div class="social-card" style="padding: 1.5rem; background: var(--bg-hover);">
+      <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.4rem;">CBTP</h3>
+      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 15px;">A Confederação Brasileira de Tiro Prático é a representante oficial do IPSC no Brasil, coordenando campeonatos estaduais e nacionais.</p>
+      <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 1rem;">
+        <a href="https://cbtp.org.br" target="_blank" class="feed-link-btn" style="margin-top: 0;">Portal CBTP <i class="fas fa-external-link-alt"></i></a>
+        <div class="social-icons-row">
+          <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CBTE -->
+    <div class="social-card" style="padding: 1.5rem; background: var(--bg-hover);">
+      <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.4rem;">CBTE</h3>
+      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 15px;">A Confederação Brasileira de Tiro Esportivo coordena as modalidades olímpicas (ISSF), além de carabina e provas de precisão nacionais.</p>
+      <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 1rem;">
+        <a href="https://cbte.org.br" target="_blank" class="feed-link-btn" style="margin-top: 0;">Portal CBTE <i class="fas fa-external-link-alt"></i></a>
+        <div class="social-icons-row">
+          <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CBTC -->
+    <div class="social-card" style="padding: 1.5rem; background: var(--bg-hover);">
+      <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.4rem;">CBTC</h3>
+      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 15px;">A Confederação Brasileira de Tiro Tático é a entidade focada em promover o desenvolvimento de disciplinas táticas e simulações com alta complexidade.</p>
+      <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 1rem;">
+        <a href="#" target="_blank" class="feed-link-btn" style="margin-top: 0;">Portal CBTC <i class="fas fa-external-link-alt"></i></a>
+        <div class="social-icons-row">
+          <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LNTD -->
+    <div class="social-card" style="padding: 1.5rem; background: var(--bg-hover);">
+      <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.4rem;">LNTD / IDPA</h3>
+      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 15px;">A Liga Nacional de Tiro Defensivo é a entidade responsável por promover provas focadas em situações de sobrevivência urbana e defesa do lar.</p>
+      <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 1rem;">
+        <a href="https://liganacionaltirodefensivo.com.br" target="_blank" class="feed-link-btn" style="margin-top: 0;">Portal LNTD <i class="fas fa-external-link-alt"></i></a>
+        <div class="social-icons-row">
+          <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================== -->
+<!-- ABA: SISTEMA SIGMA / SINARM                    -->
+<!-- ============================================== -->
+<div class="tab-content" id="tab-sinarmcac">
+  <div class="dash-header" style="margin-bottom: 1rem;">
+    <h2><i class="fas fa-folder-open" style="color:var(--accent);"></i> Plataforma SIGMA / SINARM</h2>
+  </div>
+
+  <div class="sub-tabs-tactical">
+    <button class="sub-tab-btn active" id="btn-sub-burocracia" onclick="switchSinarmSubTab('burocracia')">Gestão de Burocracia</button>
+    <button class="sub-tab-btn" id="btn-sub-conteudos" onclick="switchSinarmSubTab('conteudos')">Manuais & Guias</button>
+  </div>
+
+  <div id="sub-burocracia">
+    <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Controle do acervo esportivo. Dê o "start" no timer dos seus processos.</p>
+    
+    <div class="dash-card" style="margin-bottom: 3rem; border-top-color: var(--accent);">
+      <h3 style="margin-bottom: 1.5rem; color: #fff;">Registrar Novo Processo</h3>
+      <form id="formProcesso">
+          <label class="form-label">Número do Processo</label>
+          <input type="text" id="numProcesso" class="form-control" required placeholder="Ex: 08000.123456/2026-12">
+          
+          <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+            <div style="flex:1; min-width: 200px;">
+              <label class="form-label">Data de Pagamento (GRU)</label>
+              <input type="date" id="dataGru" class="form-control" required>
+            </div>
+            <div style="flex:1; min-width: 200px;">
+              <label class="form-label">Estado (UF)</label>
+              <select id="estado" class="form-control" required>
+                  <option value="SP" selected>São Paulo (SP)</option>
+                  <option value="RJ">Rio de Janeiro (RJ)</option>
+                  <option value="PR">Paraná (PR)</option>
+                  <option value="MG">Minas Gerais (MG)</option>
+                  <option value="SC">Santa Catarina (SC)</option>
+              </select>
+            </div>
+          </div>
+          
+          <label class="form-label">Delegacia Responsável (Ex: DPF/SCS)</label>
+          <input type="text" id="delegacia" class="form-control" required placeholder="Ex: DPF/SCS">
+          
+          <label class="form-label">Tipo de Requerimento</label>
+          <select id="tipoProcesso" class="form-control" required>
+              <option value="Autorização de Compra">Autorização de Compra</option>
+              <option value="Emissão de CRAF">Emissão de CRAF</option>
+              <option value="Renovação">Renovação de Registro</option>
+              <option value="Guia de Tráfego">Guia de Tráfego</option>
+          </select>
+          
+          <button type="submit" class="btn-primary" style="width:100%; margin: 10px 0 0 0;"><i class="fas fa-save"></i> Gravar Processo no Banco de Dados</button>
+      </form>
+    </div>
+
+    <div class="dash-header" style="margin-top: 2rem;">
+      <h3 style="color: #fff; margin:0;"><i class="fas fa-stopwatch" style="color:var(--accent);"></i> Análise do Acervo</h3>
+      <div class="filter-group">
+        <label for="filtroGrafico-sinarm">Filtrar por:</label>
+        <select id="filtroGrafico-sinarm" class="filter-select">
+            <option value="delegacia" selected>Delegacia (DPF)</option>
+            <option value="estado">Estado (UF)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="dash-card">
+        <div class="chart-container">
+          <canvas id="graficoTempo-sinarm"></canvas>
+        </div>
+      </div>
+      <div class="summary-cards">
+        <div class="summary-box">
+          <span class="label">Total Registrado</span>
+          <span class="value" id="resumoTotal-sinarm">0</span>
+        </div>
+        <div class="summary-box">
+          <span class="label">Média de Espera</span>
+          <span class="value" id="resumoMedia-sinarm" style="color: var(--accent);">0 Dias</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="dash-card" style="margin-top: 2rem;">
+      <div style="overflow-x:auto;">
+        <table class="table-dark" id="tabelaProcessos-sinarm">
+            <thead>
+                <tr>
+                    <th>Nº Registro</th>
+                    <th>Requerimento</th>
+                    <th>Órgão/Local</th>
+                    <th>Data Início (GRU)</th>
+                    <th>Tempo Decorrido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Preenchido dinamicamente via JS e Python -->
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="sub-conteudos" style="display: none;">
+    <div class="highlight-box">
+      <h3>Central de Manuais Desportivos</h3>
+      <p style="color: var(--text-muted);">Modelos de petições baseadas na Lei 9.784/99 e tramitação de guias de tráfego.</p>
+    </div>
+    <div class="articles-grid">
+      <div class="article-card" onclick="openArticle('tut-gru')">
+        <span class="article-tag">Financeiro</span>
+        <h3 class="article-title">Emissão e Baixa de GRU Rápida</h3>
+        <p class="article-excerpt" style="color: var(--text-muted); font-size:14px;">Aprenda a integrar o sistema do SINARM com o PagTesouro para compensação imediata via Pix.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================== -->
+<!-- ABA: RADAR & FEEDS                             -->
+<!-- ============================================== -->
+<div class="tab-content" id="tab-noticias">
+  <div class="dash-header">
+    <h2><i class="fas fa-bolt" style="color:var(--accent);"></i> Radar Dinâmico</h2>
+  </div>
+  <p style="color: var(--text-muted); margin-bottom: 2rem;">Lançamentos de fabricantes esportivos, divisões e comunicados de Ligas.</p>
+
+  <div class="social-grid">
+    <div class="social-card">
+      <div class="social-header">
+        <div class="social-avatar" style="background:#10b981; color:#0b1120;">L</div>
+        <div>
+          <div class="social-user">Liga Nac. Tiro Defensivo</div>
+          <div class="social-platform"><i class="fab fa-instagram" style="color:var(--text-muted);"></i> @liganacionaltirodefensivo</div>
+        </div>
+      </div>
+      <div class="social-img" style="background: url('https://placehold.co/400x200/064e3b/151e32?text=Pista+Defensiva+LNTD') center/cover;"></div>
+      <div class="social-body">
+        Prepara-se para o Campeonato Brasileiro de Tiro Defensivo! 🛡️💥 Stages complexos com uso obrigatório de traje velado. Inscrições abertas para a Etapa SP.
+        <br><br>
+        <a href="https://liganacionaltirodefensivo.com.br" target="_blank" class="feed-link-btn">Acessar Inscrições <i class="fas fa-external-link-alt"></i></a>
+      </div>
+    </div>
+
+    <div class="social-card">
+      <div class="social-header">
+        <div class="social-avatar" style="background:#f1f5f9; color:#0b1120;">T</div>
+        <div>
+          <div class="social-user">Taurus Armas Official</div>
+          <div class="social-platform"><i class="fab fa-instagram" style="color:var(--text-muted);"></i> @taurusarmasofficial</div>
+        </div>
+      </div>
+      <div class="social-img" style="background: url('https://placehold.co/400x200/1e293b/FFF?text=Nova+TS9+Optic+Ready') center/cover;"></div>
+      <div class="social-body">
+        A nova linha Optic Ready chegou. Preparada de fábrica para receber os principais Red Dots do mercado. Perfeita para a divisão Production Optics. 🎯
+        <br><br>
+        <a href="https://www.instagram.com/taurusarmasofficial/" target="_blank" class="feed-link-btn">Ver Post Oficial <i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================== -->
+<!-- ABA: TÉCNICA E REVIEWS                         -->
+<!-- ============================================== -->
+<div class="tab-content" id="tab-treinos">
+  <div class="dash-header">
+    <h2><i class="fas fa-crosshairs" style="color:var(--accent);"></i> Biomecânica e Ópticas</h2>
+  </div>
+  <div class="articles-grid">
+    <div class="article-card" onclick="openArticle('emp-tutorial')">
+      <span class="article-tag">Biomecânica Esportiva</span>
+      <h3 class="article-title">Fundamentos: Isósceles vs Weaver</h3>
+      <p style="color: var(--text-muted); font-size: 14px;">Como distribuir a tensão muscular para absorção eficiente do recuo em divisões de velocidade (IPSC).</p>
+    </div>
+    <div class="article-card" onclick="openArticle('rev-optics')">
+      <span class="article-tag">Equipamentos da Divisão Open</span>
+      <h3 class="article-title">Guia de Red Dots Modernos</h3>
+      <p style="color: var(--text-muted); font-size: 14px;">Análise de resistência a recuo e retenção de Zero: Modelos Sig Sauer, Holosun e Swampdeer.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================== -->
+<!-- GAVETAS LATERAIS (MODAIS DE ARTIGOS/MODALIDADES)-->
+<!-- ============================================== -->
+
+<div id="mod-ipsc" class="article-full">
+  <div class="article-header-sticky">
+    <h3>Tiro Prático (IPSC)</h3>
+    <button class="close-btn" onclick="closeAllArticles()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="article-content-wrapper">
+    <h4>Diligentia, Vis, Celeritas (DVC)</h4>
+    <p>Criado nos EUA e consolidado no Brasil pela CBTP, o IPSC é a Fórmula 1 do tiro. O objetivo é mesclar Precisão, Potência e Velocidade.</p>
+    <h4>Principais Divisões (Handgun)</h4>
+    <ul>
+      <li><strong>Production:</strong> Armas originais de fábrica, calibre mínimo 9mm, ação dupla no primeiro disparo.</li>
+      <li><strong>Standard:</strong> Armas customizadas, sem óptica ou compensador.</li>
+      <li><strong>Open:</strong> "Fórmula 1" sem restrições. Red Dots, compensadores gigantes, miras eletrônicas.</li>
+      <li><strong>Production Optics:</strong> Categoria em extrema ascensão. Armas de fábrica com Red Dot instalado direto no ferrolho.</li>
+    </ul>
+  </div>
+</div>
+
+<div id="mod-defensivo" class="article-full">
+  <div class="article-header-sticky">
+    <h3>Tiro Defensivo</h3>
+    <button class="close-btn" onclick="closeAllArticles()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="article-content-wrapper">
+    <h4>Sobrevivência Urbana</h4>
+    <p>Organizado no Brasil fortemente pela LNTD e IDPA, essa modalidade simula cenários que podem acontecer no dia a dia. Ao contrário do IPSC, existem regras estritas de prioridade tática.</p>
+    <h4>Regras Fundamentais</h4>
+    <ul>
+      <li><strong>Uso Velado (Concealment):</strong> Obrigatório o uso de jaqueta, colete ou camiseta larga escondendo a arma.</li>
+      <li><strong>Uso de Cobertura:</strong> O atirador deve utilizar barricadas e fatiar o alvo da borda para o centro.</li>
+      <li><strong>Retenção Tática:</strong> Proibido deixar cair carregadores com munição no chão durante as recargas.</li>
+    </ul>
+  </div>
+</div>
+
+<div id="mod-precisao" class="article-full">
+  <div class="article-header-sticky">
+    <h3>Tiro de Precisão (ISSF)</h3>
+    <button class="close-btn" onclick="closeAllArticles()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="article-content-wrapper">
+    <h4>Foco e Concentração Absoluta</h4>
+    <p>A essência do esporte olímpico. Aqui não se corre pelas pistas. O atirador fica estático, focado no controle respiratório e no "squeeze" (puxada) perfeito do gatilho.</p>
+    <h4>Tipos de Provas</h4>
+    <ul>
+      <li><strong>Pistola de Ar 10m:</strong> Feito com chumbinho diabolo. Disparos lentos visando o centro que mede milímetros.</li>
+      <li><strong>Fogo Central:</strong> Provas como Pistola 25m e 50m.</li>
+      <li><strong>Carabina Deitado (Prone):</strong> O atirador usa um traje de couro super rígido e dispara com fuzis calibre .22LR.</li>
+    </ul>
+  </div>
+</div>
+
+<div id="mod-prato" class="article-full">
+  <div class="article-header-sticky">
+    <h3>Tiro ao Prato</h3>
+    <button class="close-btn" onclick="closeAllArticles()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="article-content-wrapper">
+    <h4>Interceptação Balística</h4>
+    <p>Modalidade praticada estritamente com espingardas (calibre 12, geralmente as famosas "Sobrepostas"). O atirador dispara chumbo fino tentando quebrar discos de argila lançados a até 100km/h.</p>
+    <h4>Disciplinas</h4>
+    <ul>
+      <li><strong>Fossa Olímpica (Trap):</strong> Pratos são lançados de uma casamata subterrânea, afastando-se do atirador.</li>
+      <li><strong>Skeet:</strong> Dois pratos são lançados simultaneamente de torres laterais cruzando a frente do atirador.</li>
+    </ul>
+  </div>
+</div>
+
+<div id="emp-tutorial" class="article-full">
+  <div class="article-header-sticky">
+    <h3>Fundamentos da Empunhadura Dinâmica</h3>
+    <button class="close-btn" onclick="closeAllArticles()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="article-content-wrapper">
+    <h4>A Física do Recuo e Recuperação</h4>
+    <p>No tiro dinâmico, o "split" (tempo entre um disparo e outro) é essencial. O recuo deve ser absorvido pelo alinhamento biomecânico perfeito.</p>
+  </div>
+</div>
+
+<div id="rev-optics" class="article-full">
+  <div class="article-header-sticky">
+    <h3>Análise de Red Dots (Carry Optics / Open)</h3>
+    <button class="close-btn" onclick="closeAllArticles()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="article-content-wrapper">
+    <p>Comparativo técnico das ópticas mais usadas. Verificamos a clareza do vidro, o "refresh rate" do ponto e a retenção de zero.</p>
+  </div>
+</div>
+
+<div id="tut-gru" class="article-full">
+  <div class="article-header-sticky">
+    <h3>Emissão e Baixa Rápida de GRU</h3>
+    <button class="close-btn" onclick="closeAllArticles()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="article-content-wrapper">
+    <h4>Passo 1: Geração no Sistema</h4>
+    <p>Acesse o portal do SINARM, selecione a natureza do processo e finalize o preenchimento. Copie o Número de Referência gerado.</p>
+    <h4>Passo 2: Pagamento via PagTesouro</h4>
+    <p>Utilize a plataforma PagTesouro do Governo Federal. Insira o Código de Referência e selecione PIX.</p>
+  </div>
+</div>
+
+<!-- BLOCO DE ANÚNCIO 2 (Acima do Footer) -->
+<div class="ad-container" style="width: 92%;">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-4219712052442304"
+       data-ad-slot="SEU_SLOT_DE_ANUNCIO"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="text-align:center; padding:3rem 2rem; border-top:1px solid var(--border); background: var(--bg-card);">
+    <svg viewBox="0 0 100 100" width="35" height="35" style="margin-bottom: 1.5rem; opacity: 0.3;">
+      <polygon points="15,10 85,10 95,50 50,95 5,50" fill="none" stroke="#94a3b8" stroke-width="4"/>
+      <circle cx="50" cy="45" r="15" fill="none" stroke="#94a3b8" stroke-width="3"/>
+    </svg>
+    <p style="color:var(--text-muted); font-size:12px; font-family:'Inter',sans-serif; text-transform: uppercase; letter-spacing: 1px;">&copy; 2026 Tiro Esportivo Brasileiro. Diligentia, Vis, Celeritas.</p>
+  </div>
+</footer>
+
+<script>
+/* --- FUNÇÕES DE NAVEGAÇÃO PRINCIPAL --- */
+function goHome() {
+  closeAllArticles();
+  document.getElementById('home-page').style.display = 'block';
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.querySelector('nav a').classList.add('active'); 
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  atualizarGraficoHome(); 
+}
+
+function showTab(tabId) {
+  closeAllArticles();
+  document.getElementById('home-page').style.display = 'none';
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  
+  document.querySelectorAll('nav a').forEach(a => {
+    a.classList.remove('active');
+    if(a.getAttribute('onclick').includes(tabId)) { a.classList.add('active'); }
+  });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+
+  if(tabId === 'sinarmcac') {
+      atualizarGraficoSinarm();
+  }
+}
+
+/* --- FUNÇÕES DA SUB-ABA (DENTRO DE SIGMA/SINARM) --- */
+function switchSinarmSubTab(section) {
+  document.getElementById('btn-sub-burocracia').classList.remove('active');
+  document.getElementById('btn-sub-conteudos').classList.remove('active');
+  document.getElementById('btn-sub-' + section).classList.add('active');
+
+  document.getElementById('sub-burocracia').style.display = 'none';
+  document.getElementById('sub-conteudos').style.display = 'none';
+  document.getElementById('sub-' + section).style.display = 'block';
+
+  if(section === 'burocracia') {
+      atualizarGraficoSinarm();
+  }
+}
+
+/* --- FUNÇÕES DO GAVETEIRO LATERAIS --- */
+function openArticle(id) {
+  const article = document.getElementById(id);
+  const overlay = document.getElementById('overlay');
+  if (article) {
+    article.classList.add('open');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden'; 
+  }
+}
+function closeAllArticles() {
+  document.querySelectorAll('.article-full').forEach(a => a.classList.remove('open'));
+  document.getElementById('overlay').classList.remove('show');
+  document.body.style.overflow = 'auto'; 
+}
+
+/* ============================================================== */
+/* LÓGICA DO DASHBOARD DINÂMICO (CONECTADO AO PYTHON/FASTAPI)     */
+/* ============================================================== */
+let processos = [];
+
+let myChartHome = null;
+let myChartSinarm = null;
+
+Chart.defaults.color = '#94a3b8'; 
+Chart.defaults.borderColor = '#334155'; 
+Chart.defaults.font.family = "'Inter', sans-serif";
+
+function calcularDias(dataGru) {
+    const hoje = new Date();
+    const dataPagamento = new Date(dataGru);
+    hoje.setHours(0,0,0,0); dataPagamento.setHours(0,0,0,0);
+    return Math.ceil(Math.abs(hoje - dataPagamento) / (1000 * 60 * 60 * 24)); 
+}
+
+// Preencher as tabelas e resumos com base no Banco de Dados
+function atualizarTabelasEResumos() {
+    let totalDiasGlobais = 0;
+    let htmlTabela = "";
+
+    processos.forEach(p => {
+        const dias = calcularDias(p.gru);
+        totalDiasGlobais += dias;
+        const classeStatus = dias > 30 ? "status-badge status-warning" : "status-badge status-safe";
+        const dataFormatada = p.gru.split('-').reverse().join('/');
+        
+        htmlTabela += `
+            <tr>
+                <td style="color: #f59e0b; font-family: 'Oswald', sans-serif; letter-spacing: 0.5px;">${p.processo}</td>
+                <td>${p.tipo}</td>
+                <td>${p.delegacia} - ${p.estado}</td>
+                <td>${dataFormatada}</td>
+                <td><span class="${classeStatus}">${dias} dias</span></td>
+            </tr>
+        `;
+    });
+
+    document.querySelector("#tabelaProcessos-home tbody").innerHTML = htmlTabela;
+    document.querySelector("#tabelaProcessos-sinarm tbody").innerHTML = htmlTabela;
+
+    const total = processos.length;
+    const media = total > 0 ? (totalDiasGlobais / total).toFixed(0) : 0;
+    
+    document.getElementById('resumoTotal-home').innerText = total;
+    document.getElementById('resumoMedia-home').innerText = media + " Dias";
+    document.getElementById('resumoTotal-sinarm').innerText = total;
+    document.getElementById('resumoMedia-sinarm').innerText = media + " Dias";
+}
+
+function prepararDadosGrafico(filtroId) {
+    const tipoAgrupamento = document.getElementById(filtroId).value;
+    const estatisticas = {};
+
+    processos.forEach(p => {
+        const dias = calcularDias(p.gru);
+        let chave = p[tipoAgrupamento].toUpperCase(); 
+        if (!estatisticas[chave]) estatisticas[chave] = { totalDias: 0, count: 0 };
+        estatisticas[chave].totalDias += dias;
+        estatisticas[chave].count += 1;
+    });
+
+    const labels = Object.keys(estatisticas);
+    const medias = labels.map(label => (estatisticas[label].totalDias / estatisticas[label].count).toFixed(0));
+
+    return { labels, medias };
+}
+
+function atualizarGraficoHome() {
+    const dados = prepararDadosGrafico('filtroGrafico-home');
+    const ctx = document.getElementById('graficoTempo-home').getContext('2d');
+    
+    if (myChartHome) myChartHome.destroy(); 
+
+    myChartHome = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dados.labels,
+            datasets: [{ label: 'Média (Dias)', data: dados.medias, backgroundColor: 'rgba(245, 158, 11, 0.9)', borderColor: '#d97706', borderWidth: 1, borderRadius: 2 }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, grid: {color: '#1e293b'} }, x: { grid: {color: '#1e293b'} } }, plugins: { legend: { display: false } } }
+    });
+}
+
+function atualizarGraficoSinarm() {
+    const dados = prepararDadosGrafico('filtroGrafico-sinarm');
+    const ctx = document.getElementById('graficoTempo-sinarm').getContext('2d');
+    
+    if (myChartSinarm) myChartSinarm.destroy(); 
+
+    myChartSinarm = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dados.labels,
+            datasets: [{ label: 'Média (Dias)', data: dados.medias, backgroundColor: 'rgba(245, 158, 11, 0.9)', borderColor: '#d97706', borderWidth: 1, borderRadius: 2 }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, grid: {color: '#1e293b'} }, x: { grid: {color: '#1e293b'} } }, plugins: { legend: { display: false } } }
+    });
+}
+
+function atualizarTodosDashboards() {
+    atualizarTabelasEResumos();
+    atualizarGraficoHome();
+    if(document.getElementById('tab-sinarmcac').classList.contains('active')){
+        atualizarGraficoSinarm();
+    }
+}
+
+// -------------------------------------------------------------
+// INTEGRAÇÃO DE API COM FETCH
+// -------------------------------------------------------------
+
+// 1. Busca os dados reais do seu servidor Python
+async function carregarProcessosDoBanco() {
+    try {
+        const resposta = await fetch('/api/processos');
+        const dados = await resposta.json();
+        
+        processos = dados; // Salva o que veio do banco
+        atualizarTodosDashboards(); // Atualiza a tela
+    } catch (erro) {
+        console.error("Aviso: Tentando carregar processos do Banco de Dados...", erro);
+    }
+}
+
+// 2. Envia um novo cadastro para o servidor Python salvar no SQLite
+document.getElementById('formProcesso').addEventListener('submit', async function(e) {
+    e.preventDefault(); 
+    
+    const novoProcesso = {
+        processo: document.getElementById('numProcesso').value,
+        gru: document.getElementById('dataGru').value,
+        estado: document.getElementById('estado').value,
+        delegacia: document.getElementById('delegacia').value,
+        tipo: document.getElementById('tipoProcesso').value
+    };
+    
+    try {
+        const resposta = await fetch('/api/processos', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(novoProcesso)
+        });
+
+        if(resposta.ok) {
+            this.reset(); 
+            document.getElementById('estado').value = "SP"; 
+            
+            // Recarrega os dados fresquinhos do banco de dados
+            await carregarProcessosDoBanco();
+            alert("Processo gravado com sucesso no Banco de Dados!");
+        }
+    } catch (erro) {
+        alert("Erro ao gravar. Verifique se o backend Python está rodando junto com o arquivo.");
+    }
+});
+
+// Eventos de Filtro dos Gráficos
+document.getElementById('filtroGrafico-home').addEventListener('change', atualizarGraficoHome);
+document.getElementById('filtroGrafico-sinarm').addEventListener('change', atualizarGraficoSinarm);
+
+// Dá o "start" inicial buscando os dados ao abrir o site
+carregarProcessosDoBanco();
+
+/* MENU MOBILE */
+document.getElementById('hamburger').addEventListener('click', () => {
+  const nav = document.getElementById('navMenu');
+  if(nav.style.display === 'flex') {
+    nav.style.display = 'none';
+  } else {
+    nav.style.display = 'flex';
+    nav.style.flexDirection = 'column';
+    nav.style.position = 'absolute';
+    nav.style.top = '70px';
+    nav.style.left = '0';
+    nav.style.background = 'rgba(11, 17, 32, 0.98)';
+    nav.style.backdropFilter = 'blur(10px)';
+    nav.style.width = '100%';
+    nav.style.padding = '2rem';
+    nav.style.borderBottom = '2px solid var(--accent)';
+  }
+});
+</script>
+</body>
+</html>
